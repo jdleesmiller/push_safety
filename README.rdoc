@@ -1,6 +1,6 @@
 = push_safety
 
-* https://github.com/jdleesmiller/push_safety
+* http://github.com/jdleesmiller/push_safety
 
 == SYNOPSIS
 
@@ -39,11 +39,12 @@ PushSafety has not yet been tested on Windows.
 
 == DEVELOPMENT
 
-The source is available on github:
-
+To get the source and development depencies:
   git clone git://github.com/jdleesmiller/push_safety.git
-
-PushSafety has no dependencies. 
+  cd push_safety
+  gem build push_safety.gemspec
+  sudo gem install push_safety-X.X.X.gem --development
+where X.X.X is the current version.
 
 == HISTORY
 
