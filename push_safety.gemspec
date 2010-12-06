@@ -10,14 +10,14 @@ Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.authors           = ['John Lees-Miller']
   s.email             = ['jdleesmiller@gmail.com']
-  s.homepage          = 'http://github.com/jdleesmiller'
+  s.homepage          = 'https://github.com/jdleesmiller/push_safety'
   s.summary           = <<SUMMARY
 Avoid accidentally pushing a private gem to rubygems.org (reduce paranoia).
 SUMMARY
   s.description       = <<DESCRIPTION
 The gem push command makes it incredibly easy to publish your gems... maybe a
 little too easy. PushSafety is a RubyGems plugin that refuses to push a gem
-unless it is on a whitelist. Add your open source gems to the whitelist, and 
+unless it is on a whitelist. Add your open source gems to your whitelist, and 
 keep your private gems safe from accidental pushes.
 DESCRIPTION
 
