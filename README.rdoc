@@ -1,18 +1,37 @@
 = push_safety
 
-* TODO url
+* https://github.com/jdleesmiller/push_safety
 
 == SYNOPSIS
 
-TODO description
+The <tt>gem push</tt> command makes it incredibly easy to publish your gems...
+maybe a little too easy. PushSafety is a RubyGems plugin that refuses to push a
+gem unless it is on a whitelist. Add your open source gems to your whitelist,
+and keep your private gems safe from accidental pushes.
 
 === Usage
 
-  TODO (code sample of usage)
+1. Create a whitelist file. The default location is <tt>~/.gem_push_safety</tt>.
+   Separate gem names with whitespace (e.g. one gem name per line). For example,
+   if you work on open source gems +foo+ and +bar+, your file should read
+     foo
+     bar
+2. Use <tt>gem push</tt> as normal. If you try to push a gem that is not in
+   your whitelist, it gives an error.
+
+You can use a different file for the whitelist; see <tt>gem help push</tt> once
+you have installed PushSafety.
 
 == REQUIREMENTS
 
-* TODO (list of requirements)
+You must have ruby and rubygems installed.
+
+PushSafety has been tested on:
+* x86-linux (Ubuntu 10.10) with Ruby 1.8.7p299 and rubygems 1.3.7
+* x86-linux (rvm) with Ruby 1.9.2p0 (2010-08-18 revision 29036) and rubygems
+  1.3.7
+
+PushSafety has not yet been tested on Windows.
 
 == INSTALLATION
 
@@ -20,13 +39,22 @@ TODO description
 
 == DEVELOPMENT
 
-TODO developer advice
+The source is available on github:
+
+  git clone git://github.com/jdleesmiller/push_safety.git
+
+PushSafety has no dependencies. 
+
+== HISTORY
+
+<em>0.0.1</em>
+* first release
 
 == LICENSE
 
 (The MIT License)
 
-Copyright (c) 2010 TODO
+Copyright (c) 2010 John Lees-Miller
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
