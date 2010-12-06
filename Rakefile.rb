@@ -16,9 +16,11 @@ desc "test local install"
 task :test do 
   gem_name = "push_safety-#{PushSafety::VERSION}.gem"
   system "gem build push_safety.gemspec"
-  system "sudo gem install #{gem_name}"
+  system "gem install #{gem_name}"
+  raise "installation failed" unless $?.exitstatus == 0
+
   output = `gem help push`
-  raise "installation failed" unless output =~ /PushSafety/
+  raise "plugin failed" unless output =~ /PushSafety/
   raise "missing option" unless output =~ /--push-safety-file/
 
   test_path = File.expand_path(File.join(File.dirname(__FILE__), 'test'))
