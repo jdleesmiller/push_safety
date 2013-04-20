@@ -1,0 +1,28 @@
+PATH
+  remote: .
+  specs:
+    push_safety (0.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    gemma (3.0.0)
+      highline (~> 1.6.15)
+      minitest (~> 4.3.3)
+      rake (~> 10.0.3)
+      rdoc (~> 3.12.0)
+      yard (~> 0.8.3)
+    highline (1.6.18)
+    json (1.7.7)
+    minitest (4.3.3)
+    rake (10.0.4)
+    rdoc (3.12.2)
+      json (~> 1.4)
+    yard (0.8.6.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gemma (~> 3.0.0)
+  push_safety!

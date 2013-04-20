@@ -1,6 +1,5 @@
 require 'rubygems/command_manager'
 require 'rubygems/commands/push_command'
-require 'rubygems/format'
 
 #
 # Patch the PushCommand to first check the whitelist.
@@ -11,7 +10,7 @@ require 'rubygems/format'
 class Gem::Commands::PushCommand
   # If this gets loaded twice, it will do strange things.
   if respond_to?(:unsafe_execute)
-    raise "PushSafety has been loaded twice; something is wrong."
+    raise "PushSafety has been loaded twice; please check for old versions."
   end
 
   alias unsafe_description description
@@ -48,7 +47,8 @@ class Gem::Commands::PushCommand
     end
 
     grey_list = get_all_gem_names.map {|gem_file|
-      Gem::Format.from_file_by_path(gem_file).spec.name}
+      get_gem_name_from_gem_file(gem_file)
+    }
     black_list = grey_list - white_list
 
     unless black_list.empty?
@@ -57,6 +57,23 @@ class Gem::Commands::PushCommand
     end
 
     unsafe_execute
+  end
+
+  protected
+
+  def get_gem_name_from_gem_file gem_file
+    # compatibility issue: before ruby 2.0.0, we used Gem::Format to parse the
+    # gem file to find its name, but Gem::Format has gone away, and the
+    # functionality we need has moved to Gem::Package. Gem::Package was a
+    # module in 1.9.3 and 1.8.7, so it did not respond to new, but in 2.0.0 it
+    # does, so we test that
+    require 'rubygems/package'
+    if Gem::Package.respond_to?(:new)
+      Gem::Package.new(gem_file).spec.name
+    else
+      require 'rubygems/format'
+      Gem::Format.from_file_by_path(gem_file).spec.name
+    end
   end
 end
 
